@@ -1,0 +1,2 @@
+# MyPyBot
+Python Discord Bot

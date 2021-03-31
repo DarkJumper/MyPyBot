@@ -21,6 +21,4 @@ async def test(ctx, arg):
 
 
     
-client.add_command(test)
-client.add_command(ping)
 client.run(os.environ['DISCORD_TOKEN'])

@@ -14,5 +14,9 @@ async def on_ready():
 async def ping(ctx):
     await ctx.send(f'Ping! {client.latency}')
 
+    
+@client.command()
+async def test(ctx, arg):
+    await ctx.send(arg)
 
 client.run(os.environ['DISCORD_TOKEN'])

@@ -29,7 +29,7 @@ async def erschaffer(ctx):
 
 @pybot.command()
 async def code(ctx):
-    await ctx.send(f'Mein Code findest du hier auf [Github](https://github.com/DarkJumper/MyPyBot)!')
+    await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
 
 @pybot.command()

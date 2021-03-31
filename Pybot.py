@@ -19,4 +19,8 @@ async def ping(ctx):
 async def test(ctx, arg):
     await ctx.send(arg)
 
+
+    
+client.add_command(test)
+client.add_command(ping)
 client.run(os.environ['DISCORD_TOKEN'])

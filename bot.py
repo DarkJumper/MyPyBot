@@ -19,12 +19,7 @@ bot = Bot(command_prefix=fetch_prefix, case_insensitive=True, help_command=None)
 
 @bot.event
 async def on_ready():
-    print("PyBot ist Bereit!")
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send(f'Ping! {bot.latency}')
+    print("PyBot ist Bereit!1")
 
 
 @bot.command()

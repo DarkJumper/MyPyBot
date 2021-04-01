@@ -7,6 +7,8 @@ from PyBot.util import get_prefix
 
 
 async def fetch_prefix() -> Iterable[str]:
+    print(await get_prefix())
+    print(type(await get_prefix()))
     return f'{await get_prefix()}'
 
 

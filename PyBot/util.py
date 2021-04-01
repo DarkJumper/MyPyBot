@@ -1,4 +1,8 @@
-class GlobalSettings:
+class Settings:
+    pass
+
+
+class GlobalSettings(Settings):
     prefix = "!"
 
 

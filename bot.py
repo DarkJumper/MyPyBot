@@ -1,33 +1,35 @@
 import discord
-from discord.ext import commands
 import os
 
-pybot = commands.Bot(command_prefix="PyBot ", help_command=None)
+from discord.ext import commands
+from PyBot.util import get_prefix
+
+bot = commands.Bot(command_prefix=get_prefix, help_command=None)
 
 
-@pybot.event
+@bot.event
 async def on_ready():
     print("PyBot ist Bereit!")
 
 
-@pybot.command()
+@bot.command()
 async def ping(ctx):
-    await ctx.send(f'Ping! {pybot.latency}')
+    await ctx.send(f'Ping! {bot.latency}')
 
 
-@pybot.command()
+@bot.command()
 async def Hallo(ctx):
     await ctx.send(
         f'Hallo ich bin PyBot. \nFalls du hilfe Brauchen solltest kannst du mich einfach fragen mit "PyBot help" .'
         )
 
 
-@pybot.command()
+@bot.command()
 async def erschaffer(ctx):
     await ctx.send(f'Meinen Erschaffe kenne ich nicht Persönlich.... \n')
 
 
-@pybot.command()
+@bot.command()
 async def code(ctx):
     await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
@@ -37,4 +39,4 @@ async def help(context):
     await context.send("help ist noch nicht erstellt worden....sorry!")
 
 
-pybot.run(os.environ['DISCORD_TOKEN'])
+bot.run(os.environ['DISCORD_TOKEN'])

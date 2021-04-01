@@ -1,17 +1,20 @@
 import os
 
 from typing import Iterable
+from discord import Message, Intents
 from discord.ext.commands import Bot
 
 from PyBot.util import get_prefix
 
 
-async def fetch_prefix() -> str:
-    prefix = await get_prefix()
+async def fetch_prefix(_, msg: Message) -> Iterable[str]:
+    prefix = [await get_prefix()]
+    if msg.guild is None:
+        prefix.append("")
     return prefix
 
 
-bot = Bot(command_prefix=fetch_prefix(), case_insensitive=True, help_command=None)
+bot = Bot(command_prefix=fetch_prefix, case_insensitive=True, help_command=None, intents=(Intents.all()))
 
 
 @bot.event

@@ -7,4 +7,4 @@ class GlobalSettings(Settings):
 
 
 async def get_prefix() -> str:
-    return await GlobalSettings.prefix
+    return GlobalSettings.prefix

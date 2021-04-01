@@ -7,7 +7,7 @@ from PyBot.util import get_prefix
 
 
 async def fetch_prefix() -> Iterable[str]:
-    return await get_prefix()
+    return f'{await get_prefix()}'
 
 
 bot = Bot(command_prefix=fetch_prefix(), case_insensitive=True, help_command=None)

@@ -1,17 +1,16 @@
 import os
 
 from typing import Iterable
-from discord.ext import commands
+from discord.ext.commands import Bot
 
 from PyBot.util import get_prefix
 
 
 async def fetch_prefix() -> Iterable[str]:
-    prefix = [await get_prefix()]
-    return prefix
+    return await get_prefix()
 
 
-bot = commands.Bot(command_prefix=fetch_prefix(), case_insensitive=True, help_command=None)
+bot = Bot(command_prefix=fetch_prefix(), case_insensitive=True, help_command=None)
 
 
 @bot.event

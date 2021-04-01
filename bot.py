@@ -6,10 +6,9 @@ from discord.ext.commands import Bot
 from PyBot.util import get_prefix
 
 
-async def fetch_prefix() -> Iterable[str]:
-    print(await get_prefix())
-    print(type(await get_prefix()))
-    return f'{await get_prefix()}'
+async def fetch_prefix() -> str:
+    prefix = await get_prefix()
+    return prefix
 
 
 bot = Bot(command_prefix=fetch_prefix(), case_insensitive=True, help_command=None)

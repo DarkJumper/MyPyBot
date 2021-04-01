@@ -34,7 +34,7 @@ async def code(ctx):
     await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
 
-@pybot.command()
+@bot.command()
 async def help(context):
     await context.send("help ist noch nicht erstellt worden....sorry!")
 

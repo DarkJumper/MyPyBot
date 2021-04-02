@@ -6,7 +6,7 @@ class Cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
-    def setup(bot):
+    def setup(self, bot):
         bot.add_cog(Cog(bot))
 
     # Event

@@ -19,7 +19,7 @@ bot = Bot(command_prefix=fetch_prefix, case_insensitive=True, help_command=None)
 
 @bot.command()
 async def load(ctx, extension):
-    bot.unload_extension(f'PyBot.{extension}')
+    bot.unload_extension(f'Pybot.{extension}')
 
 
 @bot.command()

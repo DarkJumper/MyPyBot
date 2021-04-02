@@ -1,18 +1,17 @@
-from discord.ext.commands import Cog as DiscordCog
-from discord.ext.commands.core import command
+from discord.ext import commands
 
 
-class Cog(DiscordCog):
+class Cog(commands.Cog):
 
     def __init__(self, bot) -> None:
         self.bot = bot
 
     # Event
-    @DiscordCog.listener()
+    @commands.Cog.listener()
     async def on_read(self):
         print("Bot ist Online!")
 
-    @command()
+    @commands.command()
     async def ping(self, ctx):
         await ctx.send(f'Ping! {self.bot.latency}')
 

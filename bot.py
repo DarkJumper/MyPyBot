@@ -17,31 +17,18 @@ async def fetch_prefix(_, msg: Message) -> Iterable[str]:
 bot = Bot(command_prefix=fetch_prefix, case_insensitive=True, help_command=None)
 
 
-@bot.event
-async def on_ready():
-    print("PyBot ist Bereit!1")
+@bot.command()
+async def load(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
 
 
 @bot.command()
-async def Hallo(ctx):
-    await ctx.send(
-        f'Hallo ich bin PyBot. \nFalls du hilfe Brauchen solltest kannst du mich einfach fragen mit "PyBot help" .'
-        )
+async def unload(ctx, extension):
+    bot.unload_extension(f'cogs.{extension}')
 
 
-@bot.command()
-async def erschaffer(ctx):
-    await ctx.send(f'Meinen Erschaffe kenne ich nicht Persönlich.... \n')
-
-
-@bot.command()
-async def code(ctx):
-    await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
-
-
-@bot.command()
-async def help(context):
-    await context.send("help ist noch nicht erstellt worden....sorry!")
-
+for filename in os.listdir('./cogs'):
+    if filename.endswith('.py'):
+        bot.load_extension(f'cogs.{filename[:-3]}')
 
 bot.run(os.environ['DISCORD_TOKEN'])

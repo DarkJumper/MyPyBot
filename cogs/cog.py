@@ -8,7 +8,7 @@ class Cog(commands.Cog):
 
     # Event
     @commands.Cog.listener()
-    async def on_read(self):
+    async def on_ready(self):
         print("Bot ist Online!")
 
     @commands.command()

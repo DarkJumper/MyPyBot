@@ -6,9 +6,6 @@ class Cog(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
-    def setup(bot):
-        bot.add_cog(Cog(bot))
-
     # Event
     @commands.Cog.listener()
     async def on_read(self):

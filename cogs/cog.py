@@ -27,11 +27,11 @@ class Cog(commands.Cog):
             )
 
     @commands.command()
-    async def Github(ctx):
+    async def Github(self, ctx):
         await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
     @commands.command()
-    async def help(context):
+    async def help(self, context):
         await context.send("help ist noch nicht erstellt worden....sorry!")
 
 

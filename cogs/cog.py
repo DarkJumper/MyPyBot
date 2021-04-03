@@ -19,6 +19,10 @@ class Cog(commands.Cog):
         await ctx.send(f'Ping! {self.bot.latency}')
 
 
+def setup(bot):
+    bot.add_cog(Cog(bot))
+
+
 """ @bot.event
 async def on_ready():
     print("PyBot ist Bereit!1")

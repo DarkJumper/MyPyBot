@@ -7,7 +7,7 @@ from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
 
 def get_prefix(bot, message):
-    with open("utils.json", "r") as f:
+    with open("./json/utils.json", "r") as f:
         prefixes = json.load(f)
     return prefixes[str(message.guild.id)]
 

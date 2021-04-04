@@ -10,8 +10,7 @@ status = cycle(["Command gesucht? !help", "Kann ich dir helfen? !help", "Das bin
 
 @tasks.loop(seconds=10)
 async def change_status(self):
-    print("changed Status!!")
-    await self.bot.change_presence(status=discord.Game(next(self.status)))
+    await self.bot.change_presence(status=discord.Game(next(status)))
 
 
 @bot.command()

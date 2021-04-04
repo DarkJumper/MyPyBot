@@ -1,8 +1,16 @@
 import os
 
 from discord.ext.commands import Bot
+from discord.ext import tasks
+from itertools import cycle
 
 bot = Bot(command_prefix="!", case_insensitive=True, help_command=None)
+status = cycle(["Command gesucht? !help", "Kann ich dir helfen? !help", "Das bin ich!Github"])
+
+
+@tasks.loop(seconds=10)
+async def change_status(self):
+    await self.bot.change_presence(status=discord.Game(next(self.status)))
 
 
 @bot.command()

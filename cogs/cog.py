@@ -1,17 +1,11 @@
 import discord
-from discord.ext import commands, tasks
-from itertools import cycle
+from discord.ext import commands
 
 
 class Cog(commands.Cog):
-    status = cycle(["Command gesucht? !help", "Kann ich dir helfen? !help", "Das bin ich!Github"])
 
     def __init__(self, bot) -> None:
         self.bot = bot
-
-    @tasks.loop(seconds=10)
-    async def change_status(self):
-        await self.bot.change_presence(status=discord.Game(next(self.status)))
         """
          Events Begin!
         """

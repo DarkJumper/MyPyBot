@@ -4,13 +4,9 @@ from discord.ext.commands import Bot
 from discord.ext import tasks
 from itertools import cycle
 
+from discord.ext.commands.errors import MissingRequiredArgument
+
 bot = Bot(command_prefix="!", case_insensitive=True, help_command=None)
-status = cycle(["Command gesucht? !help", "Kann ich dir helfen? !help", "Das bin ich!Github"])
-
-
-@tasks.loop(seconds=10)
-async def change_status(self):
-    await self.bot.change_presence(status=discord.Game(next(status)))
 
 
 @bot.command()
@@ -21,6 +17,12 @@ async def load(ctx, extension):
 @bot.command()
 async def unload(ctx, extension):
     bot.unload_extension(f'cogs.{extension}')
+
+
+@bot.event
+async def on_command_error(ctx, error):
+    if isinstance(error, MissingRequiredArgument):
+        await ctx.send("Bitte gebe ein Richtigen Command an!")
 
 
 for filename in os.listdir('./cogs'):

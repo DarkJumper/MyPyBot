@@ -17,10 +17,10 @@ bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 
 @bot.event
 async def on_guild_join(guild):
-    with open("utils.json", "r") as f:
+    with open("./json/utils.json", "r") as f:
         prefixes = json.load(f)
     prefixes[str(guild.id)] = '!'
-    with open("utils.json", "w") as f:
+    with open("./json/utils.json", "w") as f:
         json.dump(prefixes, f, indent=4)
 
 

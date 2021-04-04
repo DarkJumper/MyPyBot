@@ -36,6 +36,10 @@ class Cog(commands.Cog):
     async def help(self, context):
         await context.send("help ist noch nicht erstellt worden....sorry!")
 
+    @commands.command()
+    async def clear(ctx, amount: int):
+        await ctx.channel.purge(limit=amount)
+
 
 def setup(bot):
     bot.add_cog(Cog(bot))

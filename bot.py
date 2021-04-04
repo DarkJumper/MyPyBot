@@ -1,12 +1,27 @@
 import os
-import discord
+import json
+from sys import prefix
 from discord.ext.commands import Bot
-from discord.ext import tasks
-from itertools import cycle
 
-from discord.ext.commands.errors import MissingRequiredArgument
+from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-bot = Bot(command_prefix="!", case_insensitive=True, help_command=None)
+
+def get_prefix(bot, message):
+    with open("utils.json", "r") as f:
+        prefixes = json.load(f)
+    return prefixes[str(message.guild.id)]
+
+
+bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
+
+
+@bot.event
+async def on_guild_join(guild):
+    with open("utils.json", "r") as f:
+        prefixes = json.load(f)
+    prefixes[str(guild.id)] = '!'
+    with open("utils.json", "w") as f:
+        json.dump(prefixes, f, indent=4)
 
 
 @bot.command()
@@ -22,7 +37,11 @@ async def unload(ctx, extension):
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, MissingRequiredArgument):
-        await ctx.send("Bitte gebe ein Richtigen Command an!")
+        await ctx.send("Ups! an dem Comand ist irgendwas falsch! Für Hilfe bentut !help")
+    elif isinstance(error, CommandNotFound):
+        await ctx.send(
+            "Es wirkt so als ob das Command nicht verhanden ist.... \n du kannst mit !help dir alle Commands anzeigen lassen!"
+            )
 
 
 for filename in os.listdir('./cogs'):

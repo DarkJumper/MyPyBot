@@ -1,3 +1,5 @@
+import discord
+from discord import activity
 from discord.ext import commands
 
 
@@ -11,6 +13,7 @@ class Cog(commands.Cog):
 
     @commands.Cog.listener()
     async def on_ready(self):
+        await self.bot.change_presence(status=discord.Status.idle, activity=discord.Game("Hilfe wird Benötigt? !help"))
         print("PyBot ist Online!")
         """
         Commands Begin!

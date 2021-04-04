@@ -1,5 +1,5 @@
 import os
-
+import discord
 from discord.ext.commands import Bot
 from discord.ext import tasks
 from itertools import cycle

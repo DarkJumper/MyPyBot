@@ -1,20 +1,25 @@
 import discord
-from discord import activity
-from discord.ext import commands
+from discord.ext import commands, tasks
+from itertools import cycle
 
 
 class Cog(commands.Cog):
+    status = cycle(["Command gesucht? !help", "Kann ich dir helfen? !help", "Das bin ich!Github"])
 
     def __init__(self, bot) -> None:
         self.bot = bot
+
+    @tasks.loop(seconds=10)
+    async def change_status(self):
+        await self.bot.change_presence(status=discord.Game(next(self.status)))
         """
          Events Begin!
         """
 
     @commands.Cog.listener()
     async def on_ready(self):
-        await self.bot.change_presence(status=discord.Status.idle, activity=discord.Game("Hilfe wird Benötigt? !help"))
-        print("PyBot ist Online!")
+        await self.bot.change_presence(status=discord.Status.idle, activity=discord.Game("Command gesucht? !help"))
+        print("PyBot ist jetzt Online!")
         """
         Commands Begin!
         """

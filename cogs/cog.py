@@ -26,14 +26,12 @@ class Cog(commands.Cog):
 
     @commands.command(pass_context=True)
     async def join(self, ctx):
-        channel = ctx.message.author.voice.voice_channel
-        await self.bot.join_voice_channel(channel)
+        channel = ctx.author.voice.channel
+        await channel.connect()
 
     @commands.command(pass_context=True)
     async def leave(self, ctx):
-        server = ctx.message.server
-        voice_client = self.bot.voice_client_int(server)
-        await voice_client.disconnect()
+        await ctx.voice_client.disconnect()
 
     @commands.command(pass_context=True)
     async def ping(self, ctx):

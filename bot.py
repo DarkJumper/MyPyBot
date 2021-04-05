@@ -1,6 +1,5 @@
 import os
 import json
-from sys import prefix
 from discord.ext.commands import Bot
 
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument

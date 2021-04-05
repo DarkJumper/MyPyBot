@@ -34,8 +34,10 @@ class Cog(commands.Cog):
         await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
     @commands.command()
-    async def help(self, context):
-        await context.send("help ist noch nicht erstellt worden....sorry!")
+    async def help(self, ctx):
+        with open("./json/help.json", "r") as f:
+            json_help = json.load(f)
+        await ctx.send(json_help)
 
     @commands.command()
     async def clear(self, ctx, amount: int):

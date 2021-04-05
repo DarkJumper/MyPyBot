@@ -1,6 +1,7 @@
 import discord
 import json
 from discord.ext import commands
+from discord.voice_client import VoiceClient
 
 
 class Cog(commands.Cog):
@@ -24,14 +25,10 @@ class Cog(commands.Cog):
         Commands Begin!
         """
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def join(self, ctx):
         channel = ctx.author.voice.channel
         await channel.connect()
-
-    @commands.command(pass_context=True)
-    async def leave(self, ctx):
-        await ctx.voice_client.disconnect()
 
     @commands.command(pass_context=True)
     async def ping(self, ctx):

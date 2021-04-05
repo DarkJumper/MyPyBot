@@ -38,7 +38,7 @@ class Cog(commands.Cog):
             json_help = json.load(f)
         cmd = ""
         for comand in json_help:
-            cmd += f'{comand.rjust(10)}: {json_help[comand]}\n'
+            cmd += f'{comand.ljust(10)}: {json_help[comand]}\n'
         await ctx.send(f'Folgende Commands stehen zur verfügung:\n```{cmd}```')
 
     @commands.command()

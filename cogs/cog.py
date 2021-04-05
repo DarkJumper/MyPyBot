@@ -19,10 +19,10 @@ class Cog(commands.Cog):
         Commands Begin!
         """
 
-    @commands.command()
+    @commands.command(pass_context=True)
     async def ping(self, ctx, cmd: str):
         if cmd == "-user":
-            await ctx.send(f'Ping von {self.bot.get_user(ctx.author.id)}!\nBeträgt ')
+            await ctx.send(f'Ping von {ctx.message.author.mention}!\nBeträgt ')
         else:
             await ctx.send(f'Ping von PyBot!\nBeträgt {self.bot.latency}ms')
 

@@ -1,6 +1,5 @@
 {
     "!ping": " Ping vom Bot wird zurück gegeben!",
-    "!github": " Mein Code! (Github Link)",
-    "!clear menge": "Menge von Nachrichten angeben die gelöscht werden soll."
-
+    "!github": " PyBot Code! (Github Link)",
+    "!clear": "Löschen von Nachrichten "
 }

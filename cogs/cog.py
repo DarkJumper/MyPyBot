@@ -39,11 +39,11 @@ class Cog(commands.Cog):
         cmd = ""
         for comand in json_help:
             cmd += f'{comand.rjust(10)}: {json_help[comand]}\n'
-        await ctx.send(f'Folgende Commands stehen zur verfügung!\n```{cmd}```')
+        await ctx.send(f'Folgende Commands stehen zur verfügung:\n```{cmd}```')
 
     @commands.command()
-    async def clear(self, ctx, amount: int):
-        await ctx.channel.purge(limit=amount)
+    async def clear(self, ctx, amount=2):
+        await ctx.channel.purge(limit=int(amount))
 
 
 def setup(bot):

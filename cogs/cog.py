@@ -20,8 +20,11 @@ class Cog(commands.Cog):
         """
 
     @commands.command()
-    async def ping(self, ctx):
-        await ctx.send(f'Ping! {self.bot.latency}')
+    async def ping(self, ctx, cmd: str):
+        if cmd == "-user":
+            await ctx.send(f'Ping von {self.bot.get_user(ctx.author.id)}!\nBeträgt ')
+        else:
+            await ctx.send(f'Ping von PyBot!\nBeträgt {self.bot.latency}ms')
 
     @commands.command()
     async def Hallo(self, ctx):
@@ -30,7 +33,7 @@ class Cog(commands.Cog):
             )
 
     @commands.command()
-    async def Github(self, ctx):
+    async def github(self, ctx):
         await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
     @commands.command()
@@ -39,7 +42,7 @@ class Cog(commands.Cog):
             json_help = json.load(f)
         cmd = ""
         for comand in json_help:
-            cmd += f'{comand}: {json_help[comand]}\n'
+            cmd += f'{comand.rjust(15)}: {json_help[comand]}\n'
         await ctx.send(f'Folgende Commands stehen zur verfügung!\n```{cmd}```')
 
     @commands.command()

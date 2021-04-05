@@ -36,10 +36,10 @@ class Cog(commands.Cog):
     async def help(self, ctx):
         with open("./json/help.json", "r") as f:
             json_help = json.load(f)
-        cmd = ""
+        cmd = str()
         for comand in json_help:
-            cmd += f'{comand.ljust(10)}: {json_help[comand]}\n'
-        await ctx.send(f'Folgende Commands stehen zur verfügung:\n```{cmd}```')
+            cmd += f'{comand.ljust(10)}{json_help[comand]}\n\r'
+        await ctx.send(f'Folgende Commands stehen zur verfügung:\n\r```{cmd}```')
 
     @commands.command()
     async def clear(self, ctx, amount=2):

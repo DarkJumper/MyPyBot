@@ -60,9 +60,10 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            lang = ', '.join(f'`{language}`' for language in self.language_support)
-            await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + lang)
+            #lang = ', '.join(f'`{language}`' for language in self.language_support)
+            #await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + lang)
             await ctx.send("!run ```language\nyour code\n```")
+            return
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)
             raise UserInputError

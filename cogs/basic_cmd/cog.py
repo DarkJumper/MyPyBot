@@ -3,7 +3,7 @@ import json
 from discord.ext import commands
 
 
-class BasicCmd(commands.Cog):
+class BasicCmdCog(commands.Cog):
 
     def __init__(self, bot) -> None:
         self.bot = bot
@@ -27,4 +27,4 @@ class BasicCmd(commands.Cog):
 
 
 def setup(bot):
-    bot.add_cog(BasicCmd(bot))
+    bot.add_cog(BasicCmdCog(bot))

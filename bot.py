@@ -20,7 +20,8 @@ bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 
 if __name__ == '__main__':
     for extensions in initial_extensions:
-        bot.load_extension(extensions)
+        print(extensions.__class__)
+        bot.load_extension(extensions.__class__)
 
 
 @bot.event

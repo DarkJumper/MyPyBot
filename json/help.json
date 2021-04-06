@@ -1,5 +1,6 @@
 {
     "!ping": "Ping vom Bot wird zurück gegeben!",
     "!github": "PyBot Code! (Github Link)",
+    "!run": "Code Ausführen -> !run help",
     "!clear": "Löschen von Nachrichten "
 }

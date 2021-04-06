@@ -1,3 +1,4 @@
+from os import stat
 import re
 
 from aiohttp import ClientError
@@ -10,7 +11,47 @@ from .api import Emkc, EmkcApiExcept
 
 max_chars = 500
 
-languages = ["c", "cpp", "bash", "kotlin", "python3"]
+languages = [
+    "awk",
+    "bash",
+    "brainfuck",
+    "c",
+    "cpp",
+    "clojure",
+    "crystal",
+    "csharp",
+    "d",
+    "dash",
+    "deno",
+    "elixir",
+    "emacs",
+    "elisp",
+    "go",
+    "haskell",
+    "java",
+    "jelly",
+    "julia",
+    "kotlin",
+    "lisp",
+    "lolcode",
+    "lua",
+    "nasm",
+    "nasm64",
+    "nim",
+    "node",
+    "osabie",
+    "paradoc",
+    "perl",
+    "php",
+    "python2",
+    "python3",
+    "ruby",
+    "rust",
+    "scala",
+    "swift",
+    "typescript",
+    "zig",
+    ]
 
 
 class CodeRunner(commands.Cog):
@@ -18,8 +59,14 @@ class CodeRunner(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
+    @staticmethod
+    async def help(self, ctx) -> str:
+        pass
+
     @commands.command()
-    async def run(self, ctx, *, args: str):
+    async def run(self, ctx, test, args: str) -> str:
+        await ctx.send(test)
+        await ctx.send(args)
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             raise UserInputError
         *_, language, source = match.groups()

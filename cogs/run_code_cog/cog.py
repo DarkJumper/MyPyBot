@@ -66,8 +66,9 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + supporteted_language())
-            await ctx.send("`\n" + "!run ```language\n" + "your code\n```" + "\n`")
+            embed = Embed(title="Hilfe für Code Runner!", description="!run ```language\n" + "your code\n```" + "\n`")
+            embed.set_footer(text="Folgende Sprachen stehen zur verfügung:\n" + supporteted_language()"")
+            await ctx.send(embed=embed)
             return
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)

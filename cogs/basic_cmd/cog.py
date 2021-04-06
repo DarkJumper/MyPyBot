@@ -17,6 +17,10 @@ class BasicCmdCog(commands.Cog):
         await ctx.send(f'Mein Code findest du hier\n-> https://github.com/DarkJumper/MyPyBot')
 
     @commands.command()
+    async def clear(self, ctx, amount=2):
+        await ctx.channel.purge(limit=int(amount))
+
+    @commands.command()
     async def help(self, ctx):
         with open("./json/help.json", "r") as f:
             json_help = json.load(f)

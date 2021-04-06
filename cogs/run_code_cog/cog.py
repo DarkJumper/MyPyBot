@@ -54,7 +54,7 @@ languages = [
 
 def supporteted_language():
     string = str()
-    string += ', '.join(f'```{language}```' for language in languages)
+    string += ', '.join(f'{language}' for language in languages)
     return string
 
 
@@ -66,7 +66,9 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            embed = Embed(title="Hilfe für Code Runner!", description="```!run ```language\nyour code\n```" + "\n```")
+            embed = Embed(
+                title="Hilfe für Code Runner!", description="```python\n!run ```language\nyour code\n```" + "\n```"
+                )
             embed.set_footer(text="Folgende Sprachen stehen zur verfügung:\n" + supporteted_language())
             await ctx.send(embed=embed)
             return

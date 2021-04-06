@@ -20,11 +20,10 @@ class CodeRunner(commands.Cog):
 
     @commands.command()
     async def run(self, ctx, *, args: str):
-        if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1"), args, re.DOTALL):
+        await ctx.send(args)
+        if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             raise UserInputError
         *_, language, source = match.groups()
-        ctx.send(language)
-        ctx.send(source)
         await ctx.trigger_typing()
         try:
             result_api = await Emkc.run_code(language, source)
@@ -41,7 +40,6 @@ class CodeRunner(commands.Cog):
                 newline == max_chars
             output = output[:newline] + "\n...."
         description = "```\n" + output.replace("`", "`\u200b") + "\n```"
-        print(description)
         embed = Embed(title="Ausgabe!", description=description)
         embed.set_footer(text=f'Wurde Ausgeführt von {ctx.author} {ctx.author.id}', icon_url=ctx.author.avatar_url)
         await ctx.send(embed=embed)

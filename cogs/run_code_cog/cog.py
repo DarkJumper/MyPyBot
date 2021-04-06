@@ -27,7 +27,7 @@ class CodeRunner(commands.Cog):
         await ctx.send(source)
         try:
             await ctx.send("Anfrage an API geht raus")
-            result_api = await Emkc.run_code(language, source)
+            result_api = await Emkc.code_runner(language, source)
             await ctx.send(result_api)
         except EmkcApiExcept as e_except:
             if e_except.error == "Supplied language is not supported by Piston":

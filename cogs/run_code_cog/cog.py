@@ -52,7 +52,7 @@ languages = [
     ]
 
 formating_help = """```
-.run `​`​`language
+!run `​`​`language
 Dein Code
 `​`​`
 ```\n
@@ -73,7 +73,6 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-
             embed = Embed(title="Hilfe für Code Runner!", description=formating_help)
             embed.set_footer(text="Folgende Sprachen stehen zur verfügung:\n" + supporteted_language())
             await ctx.send(embed=embed)

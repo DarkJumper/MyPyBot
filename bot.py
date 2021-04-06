@@ -3,7 +3,7 @@ import json
 import discord
 
 from discord.ext.commands import Bot
-from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
+from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument, UserInputError
 
 
 def get_prefix(bot, message):
@@ -31,6 +31,8 @@ async def on_command_error(ctx, error):
         await ctx.send(
             "Es wirkt so als ob das Command nicht verhanden ist.... \n Du kannst mit !help dir alle Commands anzeigen lassen!"
             )
+    elif isinstance(error, UserInputError):
+        await ctx.send("Bei der Eingabe ist irgendwas falsch gelaufen.....")
 
 
 for extension in initial_extensions:

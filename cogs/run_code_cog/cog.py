@@ -21,7 +21,6 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str):
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
-            await ctx.send(args)
             raise UserInputError
         *_, language, source = match.groups()
         await ctx.send(language)

@@ -26,7 +26,7 @@ async def on_ready():
 @bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, MissingRequiredArgument):
-        await ctx.send("Ups! an dem Comand ist irgendwas falsch! Für Hilfe bentut !help")
+        await ctx.send("Ups! an dem Comand ist irgendwas falsch!\nFalls du Hilfe brauchen solltest  !help")
     elif isinstance(error, CommandNotFound):
         await ctx.send(
             "Es wirkt so als ob das Command nicht verhanden ist.... \n Du kannst mit !help dir alle Commands anzeigen lassen!"

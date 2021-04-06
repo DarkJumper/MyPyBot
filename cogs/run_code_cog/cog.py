@@ -39,6 +39,7 @@ class CodeRunner(commands.Cog):
                 newline == max_chars
             output = output[:newline] + "\n...."
         description = "```\n" + output.replace("`", "`\u200b") + "\n```"
+        print(description)
         embed = Embed(title="Ausgabe!", description=description)
         embed.set_footer(text=f'Wurde Ausgeführt von {ctx.author} {ctx.author.id}', icon_url=ctx.author.avatar_url)
         await ctx.channel.send(embed=embed)

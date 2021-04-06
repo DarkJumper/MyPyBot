@@ -5,7 +5,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from .cogs import *
+from cogs.basic_cmd import *
 
 
 def get_prefix(bot, message):

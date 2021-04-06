@@ -61,10 +61,12 @@ class CodeRunner(commands.Cog):
 
     @staticmethod
     async def help(self, ctx) -> str:
-        pass
+        await ctx.send("HELP!!")
 
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
+        if args == "help":
+            await self.help(ctx)
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)
             raise UserInputError

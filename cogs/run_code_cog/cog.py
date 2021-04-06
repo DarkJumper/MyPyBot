@@ -23,6 +23,8 @@ class CodeRunner(commands.Cog):
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1"), args, re.DOTALL):
             raise UserInputError
         *_, language, source = match.groups()
+        ctx.send(language)
+        ctx.send(source)
         await ctx.trigger_typing()
         try:
             result_api = await Emkc.run_code(language, source)
@@ -42,7 +44,7 @@ class CodeRunner(commands.Cog):
         print(description)
         embed = Embed(title="Ausgabe!", description=description)
         embed.set_footer(text=f'Wurde Ausgeführt von {ctx.author} {ctx.author.id}', icon_url=ctx.author.avatar_url)
-        await ctx.channel.send(embed=embed)
+        await ctx.send(embed=embed)
 
 
 def setup(bot):

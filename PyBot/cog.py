@@ -13,7 +13,7 @@ class Cog(DiscordCog):
         return cls.instance
 
 
-def load_cog(bot: Bot, *cogs: Cog):
+def load_cogs(bot: Bot, *cogs: Cog):
     for cog in cogs:
         cog.bot = bot
         bot.add_cog(cog)

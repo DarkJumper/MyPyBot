@@ -5,7 +5,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from PyBot import load_cog
+from PyBot.cog import load_cogs
 from cogs.libary import *
 
 

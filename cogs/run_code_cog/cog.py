@@ -3,7 +3,6 @@ import re
 
 from aiohttp import ClientError
 from discord import Embed
-from discord.client import Client
 from discord.ext import commands
 from discord.ext.commands import CommandError, UserInputError
 
@@ -66,6 +65,7 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
+            await ctx.send("HELP!")
             await self.help(ctx)
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)

@@ -5,8 +5,6 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from cog import load_cogs
-
 
 def get_prefix(bot, message):
     with open("./json/utils.json", "r") as f:

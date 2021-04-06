@@ -14,6 +14,8 @@ def get_prefix(bot, message):
     return prefixes[str(message.guild.id)]
 
 
+initial_extensions = ['cogs.basic_cmd.cog']
+
 bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 
 
@@ -33,6 +35,7 @@ async def on_command_error(ctx, error):
             )
 
 
-load_cogs(bot, ['cogs.basic_cmd.cog'])
+for extension in initial_extensions:
+    bot.load_extension(extension)
 
 bot.run(os.environ['DISCORD_TOKEN'])

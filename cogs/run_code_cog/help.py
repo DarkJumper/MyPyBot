@@ -42,13 +42,15 @@ class HelpRunner:
         "zig",
         ]
 
+    @staticmethod
     async def languages(self) -> str:
         lang = ', '.join(f'`{language}`' for language in self.language_support)
-        return "Folgende Sprachen stehen zur verfügung:\n" + lang
+        return await "Folgende Sprachen stehen zur verfügung:\n" + lang
 
+    @staticmethod
     async def get_help(self) -> str:
         formating = """!run ```language\n
         your code\n
         ```
         """
-        return formating
+        return await formating

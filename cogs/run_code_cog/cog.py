@@ -24,7 +24,6 @@ class CodeRunner(commands.Cog):
             raise UserInputError
         *_, language, source = match.groups()
         try:
-            await ctx.send("Anfrage an API geht raus")
             result_api = await Emkc.code_runner(language, source)
         except EmkcApiExcept as e_except:
             if e_except.error == "Supplied language is not supported by Piston":
@@ -33,7 +32,6 @@ class CodeRunner(commands.Cog):
         except ClientError:
             raise CommandError(f"Es wurde ein Fehler während des Ausführens festgestellt!")
         output: str = result_api["output"]
-        await ctx.send(output + "Rückgabe von API")
         if len(output) > max_chars:
             newline = output.find("\n", max_chars, max_chars + 10)
             if newline == -1:

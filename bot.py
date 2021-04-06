@@ -5,7 +5,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from cogs.basic_cmd import basic_cmd
+from .cogs import *
 
 
 def get_prefix(bot, message):
@@ -14,7 +14,7 @@ def get_prefix(bot, message):
     return prefixes[str(message.guild.id)]
 
 
-initial_extensions = ['BasicCmdCog()']
+initial_extensions = [BasicCmdCog()]
 
 bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 

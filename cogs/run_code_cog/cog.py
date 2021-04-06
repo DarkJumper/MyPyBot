@@ -7,9 +7,49 @@ from discord.ext import commands
 from discord.ext.commands import CommandError, UserInputError
 
 from .api import Emkc, EmkcApiExcept
-from .help import HelpRunner
 
 max_chars = 2000
+language_support = [
+    "awk",
+    "bash",
+    "brainfuck",
+    "c",
+    "cpp",
+    "clojure",
+    "crystal",
+    "csharp",
+    "d",
+    "dash",
+    "deno",
+    "elixir",
+    "emacs",
+    "elisp",
+    "go",
+    "haskell",
+    "java",
+    "jelly",
+    "julia",
+    "kotlin",
+    "lisp",
+    "lolcode",
+    "lua",
+    "nasm",
+    "nasm64",
+    "nim",
+    "node",
+    "osabie",
+    "paradoc",
+    "perl",
+    "php",
+    "python2",
+    "python3",
+    "ruby",
+    "rust",
+    "scala",
+    "swift",
+    "typescript",
+    "zig",
+    ]
 
 
 class CodeRunner(commands.Cog):
@@ -20,11 +60,9 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            await ctx.send("HELP?!")
-            lang_support = await HelpRunner.languages()
-            await ctx.send(lang_support)
-            formating = await HelpRunner.get_help()
-            await ctx.send(lang_support + "\n" + formating)
+            lang = ', '.join(f'`{language}`' for language in self.language_support)
+            await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + lang)
+            await ctx.send("!run ```language\nyour code\n```")
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)
             raise UserInputError

@@ -12,7 +12,7 @@ def get_prefix(bot, message):
     return prefixes[str(message.guild.id)]
 
 
-initial_extensions = ['cogs.basic_cmd.cog', 'cogs.event_cog.cog']
+initial_extensions = ['cogs.basic_cmd.cog', 'cogs.event_cog.cog', 'cogs.run_code_cog']
 
 bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 
@@ -23,14 +23,15 @@ async def on_ready():
     print("PyBot ist jetzt Online!")
 
 
-""" @bot.event
+@bot.event
 async def on_command_error(ctx, error):
     if isinstance(error, MissingRequiredArgument):
         await ctx.send("Ups! an dem Comand ist irgendwas falsch! Für Hilfe bentut !help")
     elif isinstance(error, CommandNotFound):
         await ctx.send(
             "Es wirkt so als ob das Command nicht verhanden ist.... \n Du kannst mit !help dir alle Commands anzeigen lassen!"
-            ) """
+            )
+
 
 for extension in initial_extensions:
     bot.load_extension(extension)

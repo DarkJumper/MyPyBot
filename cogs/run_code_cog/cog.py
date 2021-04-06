@@ -9,7 +9,7 @@ from discord.ext.commands import CommandError, UserInputError
 from .api import Emkc, EmkcApiExcept
 
 max_chars = 2000
-language_support = [
+languages = [
     "awk",
     "bash",
     "brainfuck",
@@ -52,6 +52,12 @@ language_support = [
     ]
 
 
+def supporteted_language():
+    string = str()
+    string += ', '.join(f'`{language}`' for language in languages)
+    return string
+
+
 class CodeRunner(commands.Cog):
 
     def __init__(self, bot) -> None:
@@ -60,9 +66,8 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            #lang = ', '.join(f'`{language}`' for language in self.language_support)
-            #await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + lang)
-            await ctx.send("!run ```language\nyour code\n```")
+            await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + supporteted_language())
+            await ctx.send("```!run ```language\nyour code\n``````")
             return
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)

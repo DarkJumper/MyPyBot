@@ -34,6 +34,6 @@ async def on_command_error(ctx, error):
             )
 
 
-load_cogs(bot, BasicCmdCog())
+load_cogs(bot, BasicCmdCog(), CodeRunner())
 
 bot.run(os.environ['DISCORD_TOKEN'])

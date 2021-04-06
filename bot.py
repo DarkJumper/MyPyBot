@@ -5,8 +5,7 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from PyBot.cog import load_cogs
-from cogs.libary import *
+from cog import load_cogs
 
 
 def get_prefix(bot, message):
@@ -34,6 +33,6 @@ async def on_command_error(ctx, error):
             )
 
 
-load_cogs(bot, BasicCmdCog(), CodeRunner())
+load_cogs(bot, ['cogs.basic_cmd.cog'])
 
 bot.run(os.environ['DISCORD_TOKEN'])

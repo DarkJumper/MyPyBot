@@ -42,13 +42,13 @@ class HelpRunner:
         "zig",
         ]
 
-    async def languages(self, ctx) -> str:
+    async def languages(self) -> str:
         lang = ', '.join(f'`{language}`' for language in self.language_support)
-        await ctx.send("Folgende Sprachen stehen zur verfügung:\n" + lang)
+        return "Folgende Sprachen stehen zur verfügung:\n" + lang
 
-    async def get_help(self, ctx) -> str:
+    async def get_help(self) -> str:
         formating = """!run ```language\n
         your code\n
         ```
         """
-        await ctx.send(formating)
+        return formating

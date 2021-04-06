@@ -23,11 +23,9 @@ class CodeRunner(commands.Cog):
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             raise UserInputError
         *_, language, source = match.groups()
-        await ctx.send(language)
-        await ctx.send(source)
-        await ctx.trigger_typing()
         try:
             result_api = await Emkc.run_code(language, source)
+            await ctx.send("Anfrage an API geht raus")
         except EmkcApiExcept as e_except:
             if e_except.error == "Supplied language is not supported by Piston":
                 raise CommandError("Sprache wird nicht Unterstützt")
@@ -35,6 +33,7 @@ class CodeRunner(commands.Cog):
         except ClientError:
             raise CommandError(f"Es wurde ein Fehler während des Ausführens festgestellt!")
         output: str = result_api["output"]
+        await ctx.send(output + "Rückgabe von API")
         if len(output) > max_chars:
             newline = output.find("\n", max_chars, max_chars + 10)
             if newline == -1:

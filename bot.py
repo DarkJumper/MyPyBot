@@ -5,7 +5,8 @@ import discord
 from discord.ext.commands import Bot
 from discord.ext.commands.errors import CommandNotFound, MissingRequiredArgument
 
-from cogs.basic_cmd import *
+from PyBot import load_cog
+from cogs.libary import *
 
 
 def get_prefix(bot, message):
@@ -14,30 +15,13 @@ def get_prefix(bot, message):
     return prefixes[str(message.guild.id)]
 
 
-initial_extensions = [BasicCmdCog()]
-
 bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
-
-if __name__ == '__main__':
-    for extensions in initial_extensions:
-        print(extensions.__class__)
-        bot.load_extension(extensions.__class__)
 
 
 @bot.event
 async def on_ready():
     await bot.change_presence(status=discord.Status.idle, activity=discord.Game("Command gesucht? !help"))
     print("PyBot ist jetzt Online!")
-
-
-""" @bot.command()
-async def load(ctx, extension):
-    bot.unload_extension(f'cogs.{extension}')
-
-
-@bot.command()
-async def unload(ctx, extension):
-    bot.unload_extension(f'cogs.{extension}') """
 
 
 @bot.event
@@ -49,5 +33,7 @@ async def on_command_error(ctx, error):
             "Es wirkt so als ob das Command nicht verhanden ist.... \n du kannst mit !help dir alle Commands anzeigen lassen!"
             )
 
+
+load_cog(bot, BasicCmdCog())
 
 bot.run(os.environ['DISCORD_TOKEN'])

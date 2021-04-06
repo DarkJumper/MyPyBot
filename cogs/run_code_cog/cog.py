@@ -20,8 +20,10 @@ class CodeRunner(commands.Cog):
     @commands.command()
     async def run(self, ctx, *, args: str) -> str:
         if args == "help":
-            lang_support = HelpRunner.languages()
-            formating = HelpRunner.get_help()
+            await ctx.send("HELP?!")
+            lang_support = await HelpRunner.languages()
+            await ctx.send(lang_support)
+            formating = await HelpRunner.get_help()
             await ctx.send(lang_support + "\n" + formating)
         if not (match := re.fullmatch(r"((```)?)([a-zA-Z\d]+)\n(.+?)\1", args, re.DOTALL)):
             await ctx.send(args)

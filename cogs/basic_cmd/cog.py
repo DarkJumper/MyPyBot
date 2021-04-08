@@ -21,11 +21,14 @@ class CmdCog(commands.Cog):
     async def clear(self, ctx, amount=2):
         await ctx.channel.purge(limit=int(amount))
 
-    @commands.command(pass_context=True)
+    @commands.command()
     async def join(self, ctx):
-        author = ctx.message.author
-        channel = author.voice_channel
-        await self.bot.join_voice_channel(channel)
+        channel = ctx.author.voice.channel
+        await channel.connect()
+
+    @commands.command()
+    async def leave(self, ctx):
+        await ctx.voice_client.disconnect()
 
     @commands.command()
     async def help(self, ctx):

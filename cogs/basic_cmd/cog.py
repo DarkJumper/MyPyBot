@@ -1,7 +1,6 @@
 import discord
 import json
 from discord.ext import commands
-from discord.voice_client import VoiceClient
 
 
 class CmdCog(commands.Cog):
@@ -20,15 +19,6 @@ class CmdCog(commands.Cog):
     @commands.command()
     async def clear(self, ctx, amount=2):
         await ctx.channel.purge(limit=int(amount))
-
-    @commands.command()
-    async def join(self, ctx):
-        channel = ctx.author.voice.channel
-        await channel.connect()
-
-    @commands.command()
-    async def leave(self, ctx):
-        await ctx.voice_client.disconnect()
 
     @commands.command()
     async def help(self, ctx):

@@ -12,7 +12,7 @@ def get_prefix(bot, message):
     return prefixes[str(message.guild.id)]
 
 
-initial_extensions = ['cogs.basic_cmd.cog', 'cogs.event_cog.cog', 'cogs.run_code_cog.cog']
+initial_extensions = ['cogs.basic_cmd.cog', 'cogs.event_cog.cog', 'cogs.run_code_cog.cog', 'cogs.yt_sound_cog.cog']
 
 bot = Bot(command_prefix=get_prefix, case_insensitive=True, help_command=None)
 

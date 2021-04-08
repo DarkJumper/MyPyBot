@@ -22,11 +22,14 @@ class CmdCog(commands.Cog):
 
     @commands.command(pass_context=True)
     async def join(self, ctx):
+        ctx.send("Join ist angekommen")
         channel = ctx.author.voice.channel
+        ctx.send("Join ist ausführen")
         await channel.connect()
 
     @commands.command(pass_context=True)
     async def leave(self, ctx):
+        ctx.send("leave ist angekommen")
         await ctx.voice_client.disconnect()
 
     @commands.command()

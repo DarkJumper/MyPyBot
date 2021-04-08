@@ -20,6 +20,15 @@ class CmdCog(commands.Cog):
     async def clear(self, ctx, amount=2):
         await ctx.channel.purge(limit=int(amount))
 
+    @commands.command(pass_context=True)
+    async def join(self, ctx):
+        channel = ctx.author.voice.channel
+        await channel.connect()
+
+    @commands.command(pass_context=True)
+    async def leave(self, ctx):
+        await ctx.voice_client.disconnect()
+
     @commands.command()
     async def help(self, ctx):
         with open("./json/help.json", "r") as f:

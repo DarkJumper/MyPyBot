@@ -10,11 +10,10 @@ class SoundCog(commands.Cog):
     def __init__(self, bot) -> None:
         self.bot = bot
 
-    @commands.command()
-    async def join(self, ctx, *, channel: discord.VoiceChannel):
-        if ctx.voice_client is not None:
-            return await ctx.voice_client.move_to(channel)
-        await channel.connect()
+    @commands.command(pass_context=True)
+    async def join(self, ctx):
+        channel = ctx.message.author.voice.voice_channel
+        await self.bot.join_voice_channel(channel)
 
     @commands.command()
     async def leave(self, ctx):
